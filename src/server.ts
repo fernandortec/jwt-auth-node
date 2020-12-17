@@ -5,6 +5,7 @@ import cookie_parser from 'cookie-parser';
 import cors from 'cors';
 import mongoose from 'mongoose';
 import routes from './routes';
+import endpoint from './services/endpoint';
 
 // 1- Register a user
 // 2- Login a user
@@ -12,15 +13,12 @@ import routes from './routes';
 // 4- Setup a protected route
 // 5- Get a new acesstoken with a refresh token
 
-mongoose.connect(
-  'mongodb+srv://Fernando:maxicontrol@cluster0.c1p11.mongodb.net/jwt-user:jwt?retryWrites=true&w=majority',
-  {
-    useUnifiedTopology: true,
-    useNewUrlParser: true,
-    useFindAndModify: false,
-    useCreateIndex:true,
-  }
-);
+mongoose.connect(endpoint.MONGO_URL, {
+  useUnifiedTopology: true,
+  useNewUrlParser: true,
+  useFindAndModify: false,
+  useCreateIndex: true,
+});
 
 const app = express();
 
